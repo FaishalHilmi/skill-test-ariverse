@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
 
-@theme inline {
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-outline: var(--outline);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-secondary: var(--secondary);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --primary: #630ed4;
+  --on-primary: #ffffff;
+  --background: #fef7ff;
+  --surface: #fef7ff;
+  --surface-container: #f3ebfa;
+  --surface-container-high: #ede5f4;
+  --surface-container-highest: #e8dfee;
+  --outline: #7b7487;
+  --on-surface: #1d1a24;
+  --on-surface-variant: #4a4455;
+  --secondary: #565e74;
+}
+
+.dark {
+  --primary: #d2bbff;
+  --on-primary: #3f008e;
+  --background: #0b1326;
+  --surface: #0b1326;
+  --surface-container: #171f33;
+  --surface-container-high: #222a3d;
+  --surface-container-highest: #2d3449;
+  --outline: #958da1;
+  --on-surface: #dae2fd;
+  --on-surface-variant: #ccc3d8;
+  --secondary: #89ceff;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface font-sans transition-colors duration-300;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility glass {
+  @apply bg-surface/60 backdrop-blur-md border border-outline/10;
+}
+
+@utility glass-dark {
+  @apply bg-surface/40 backdrop-blur-xl border border-outline/20;
+}
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
