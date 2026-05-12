@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export default function HeroSection() {
+  
   return (
     <section className="relative w-full h-150 md:h-175 overflow-hidden flex items-center">
       {/* Background Image with Overlay */}
