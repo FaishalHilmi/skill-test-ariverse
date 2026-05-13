@@ -5,7 +5,7 @@ export const YEAR_OPTIONS = [
   },
   {
     label: "2025",
-    value: "202",
+    value: "2025",
   },
   {
     label: "2024",
