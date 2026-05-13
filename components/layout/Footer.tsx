@@ -3,7 +3,6 @@ export function Footer() {
     <footer className="py-12 md:py-16 border-t border-outline/10 bg-background">
       <div className="container mx-auto px-5 lg:px-16">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-12 md:gap-8">
-          {/* Logo & Description */}
           <div className="max-w-xs space-y-4">
             <a
               href="/"
@@ -19,7 +18,7 @@ export function Footer() {
 
           <div className="md:text-right">
             <p className="text-[10px] md:text-xs font-medium text-on-surface-variant">
-              © 2024 GameVault. Semua hak cipta dilindungi.
+              © 2026 GameVault. Semua hak cipta dilindungi.
             </p>
           </div>
         </div>
