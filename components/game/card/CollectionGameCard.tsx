@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Star, Monitor, Smartphone } from "lucide-react";
+import { Star } from "lucide-react";
 import { Game } from "@/types/game";
 import { cn } from "@/lib/utils";
+import { PLATFORM_ICONS } from "@/lib/platform-icons";
 
 export function CollectionGameCard({ game }: { game: Game }) {
   return (
@@ -56,9 +57,13 @@ export function CollectionGameCard({ game }: { game: Game }) {
               text-on-surface-variant
             "
           >
-            <Monitor className="h-4 w-4" />
+            {game.platforms.map((platform) => {
+              const Icon = PLATFORM_ICONS[platform];
 
-            <Smartphone className="h-4 w-4" />
+              if (!Icon) return null;
+
+              return <Icon key={platform} className="h-4 w-4" />;
+            })}
           </div>
 
           <div className="mt-auto">
@@ -72,7 +77,9 @@ export function CollectionGameCard({ game }: { game: Game }) {
                 "group-hover:text-on-primary",
               )}
             >
-              Rp {game.price.toLocaleString("id-ID")}
+              {game.price === 0
+                ? "Gratis"
+                : `Rp ${game.price.toLocaleString("id-ID")}`}
             </div>
           </div>
         </div>
