@@ -1,8 +1,10 @@
 import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 import SelectField from "../ui/SelectField";
-import { useState } from "react";
 import { YEAR_OPTIONS } from "@/data/years-options";
+import { GAME_CATEGORIES } from "@/data/categories";
+import { GAME_PLATFORMS } from "@/data/platform";
+import { useGameFilterStore } from "@/store/useGameFilterStore";
 
 export default function SidebarFilters({
   onClose,
@@ -11,7 +13,17 @@ export default function SidebarFilters({
   onClose?: () => void;
   isMobile?: boolean;
 }) {
-  const [year, setYear] = useState("all");
+  const selectedGenres = useGameFilterStore((state) => state.selectedGenres);
+  const selectedPlatform = useGameFilterStore(
+    (state) => state.selectedPlatform,
+  );
+  const selectedYear = useGameFilterStore((state) => state.selectedYear);
+  const toggleGenre = useGameFilterStore((state) => state.toggleGenre);
+  const setSelectedPlatform = useGameFilterStore(
+    (state) => state.setSelectedPlatform,
+  );
+  const setSelectedYear = useGameFilterStore((state) => state.setSelectedYear);
+  const resetFilters = useGameFilterStore((state) => state.resetFilters);
 
   return (
     <aside
@@ -23,7 +35,10 @@ export default function SidebarFilters({
       <div className="flex items-center justify-between">
         <h3 className="text-xl font-display font-bold">Filter</h3>
         <div className="flex items-center gap-4">
-          <button className="text-xs font-display font-bold text-primary hover:underline">
+          <button
+            onClick={resetFilters}
+            className="text-xs font-display font-bold text-primary hover:underline"
+          >
             Reset
           </button>
           {onClose && (
@@ -42,23 +57,22 @@ export default function SidebarFilters({
           Genre
         </h4>
         <div className="space-y-3">
-          {["Action", "RPG", "Adventure", "Shooter", "Strategy"].map(
-            (genre) => (
-              <label
-                key={genre}
-                className="flex items-center gap-3 cursor-pointer group"
-              >
-                <input
-                  type="checkbox"
-                  className="w-5 h-5 rounded border-outline/30 bg-surface-container text-primary focus:ring-primary/20 accent-primary cursor-pointer"
-                  defaultChecked={genre === "Action"}
-                />
-                <span className="text-sm font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">
-                  {genre}
-                </span>
-              </label>
-            ),
-          )}
+          {GAME_CATEGORIES.slice(1, 6).map((genre) => (
+            <label
+              key={genre}
+              className="flex items-center gap-3 cursor-pointer group"
+            >
+              <input
+                type="checkbox"
+                checked={selectedGenres.includes(genre)}
+                onChange={() => toggleGenre(genre)}
+                className="w-5 h-5 rounded border-outline/30 bg-surface-container text-primary focus:ring-primary/20 accent-primary cursor-pointer"
+              />
+              <span className="text-sm font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">
+                {genre}
+              </span>
+            </label>
+          ))}
         </div>
       </div>
 
@@ -67,12 +81,13 @@ export default function SidebarFilters({
           Platform
         </h4>
         <div className="flex flex-wrap gap-2">
-          {["PC", "PS5", "Xbox", "Switch"].map((platform) => (
+          {GAME_PLATFORMS.map((platform) => (
             <button
               key={platform}
+              onClick={() => setSelectedPlatform(platform)}
               className={cn(
                 "px-4 py-1.5 rounded-lg text-xs font-display font-bold transition-all",
-                platform === "PC"
+                selectedPlatform === platform
                   ? "bg-primary text-on-primary"
                   : "bg-surface-container text-on-surface-variant hover:bg-surface-container-high",
               )}
@@ -88,8 +103,8 @@ export default function SidebarFilters({
           Tahun Rilis
         </h4>
         <SelectField
-          value={year}
-          onChange={(e) => setYear(e.target.value)}
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(e.target.value)}
           options={YEAR_OPTIONS}
         />
       </div>
