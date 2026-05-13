@@ -4,8 +4,11 @@ import { motion } from "framer-motion";
 import { Heart, ShoppingCart } from "lucide-react";
 import { Game } from "@/types/game";
 import { cn } from "@/lib/utils";
+import { useWishlistStore } from "@/store/useWishlistStore";
 
 export default function WishlistGameCard({ game }: { game: Game }) {
+  const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
+
   return (
     <motion.article
       initial={{
@@ -17,7 +20,7 @@ export default function WishlistGameCard({ game }: { game: Game }) {
         y: 0,
       }}
       transition={{
-        delay: game.id * 0.1,
+        delay: game.id * 0.02,
       }}
       className="
         group relative
@@ -37,7 +40,7 @@ export default function WishlistGameCard({ game }: { game: Game }) {
         href={`/games/${game.slug}`}
         className="
           relative block
-          aspect-4/5
+          aspect-square
           overflow-hidden
         "
       >
@@ -69,6 +72,10 @@ export default function WishlistGameCard({ game }: { game: Game }) {
         />
 
         <button
+          onClick={(e) => {
+            e.preventDefault();
+            toggleWishlist(game.id);
+          }}
           className="
             absolute right-6 top-6 z-10
             rounded-full bg-white/90
@@ -82,7 +89,7 @@ export default function WishlistGameCard({ game }: { game: Game }) {
         >
           <Heart
             className="
-              h-5 w-5 fill-current
+              h-5 w-5 fill-red-500 text-red-500
             "
           />
         </button>

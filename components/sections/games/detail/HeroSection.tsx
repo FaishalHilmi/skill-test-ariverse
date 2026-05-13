@@ -5,8 +5,13 @@ import { Game } from "@/types/game";
 import { Heart, Star } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useWishlistStore } from "@/store/useWishlistStore";
 
 export default function HeroSection({ game }: { game: Game }) {
+  const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
+  const wishlist = useWishlistStore((state) => state.wishlist);
+  const isWishlisted = wishlist.includes(game.id);
+
   return (
     <section className="relative h-[60vh] md:h-[70vh] flex items-end">
       <div className="absolute inset-0">
@@ -64,7 +69,7 @@ export default function HeroSection({ game }: { game: Game }) {
             </div>
 
             <div className="flex items-center gap-3 md:gap-4 w-full md:w-auto">
-              <button className="flex-1 md:flex-none px-5 py-3 md:px-8 md:py-4 rounded-xl md:rounded-2xl bg-primary text-on-primary font-display font-bold text-sm md:text-base hover:scale-105 transition-transform shadow-xl shadow-primary/20">
+              <button className="flex-1 md:flex-none px-3 py-3 md:px-8 md:py-4 rounded-xl md:rounded-2xl bg-primary text-on-primary font-display font-bold text-sm md:text-base hover:scale-105 transition-transform shadow-xl shadow-primary/20">
                 Beli Sekarang -{" "}
                 {game.price.toLocaleString("id-ID", {
                   style: "currency",
@@ -72,8 +77,22 @@ export default function HeroSection({ game }: { game: Game }) {
                   minimumFractionDigits: 0,
                 })}
               </button>
-              <button className="p-3 md:p-4 rounded-xl md:rounded-2xl glass border border-outline/20 text-on-surface hover:bg-surface-container transition-colors group">
-                <Heart className="h-5 w-5 md:h-6 md:w-6 group-hover:fill-red-500 group-hover:text-red-500 transition-colors" />
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleWishlist(game.id);
+                }}
+                className="p-3 md:p-4 rounded-xl md:rounded-2xl glass border border-outline/20 text-on-surface hover:bg-surface-container transition-colors group"
+              >
+                <Heart
+                  // className="h-5 w-5 md:h-6 md:w-6 group-hover:fill-red-500 group-hover:text-red-500 transition-colors"
+                  className={cn(
+                    "h-5 w-5 md:h-6 md:w-6 transition-colors",
+                    isWishlisted
+                      ? "fill-red-500 text-red-500"
+                      : "text-on-surface group-hover:text-red-500",
+                  )}
+                />
               </button>
             </div>
           </div>

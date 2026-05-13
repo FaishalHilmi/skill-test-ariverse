@@ -4,12 +4,11 @@ import EmptySection from "./EmptySection";
 import GridSection from "./GridSection";
 import HeaderSection from "./HeaderSection";
 import games from "@/data/games.json";
-
-// import { useWishlistStore } from "@/store/wishlist-store";
+import { useWishlistStore } from "@/store/useWishlistStore";
 
 export default function Content() {
-  //   const wishlistGames = useWishlistStore((state) => state.wishlistGames);
-  const wishlistGames = games.slice(0, 4);
+  const wishlist = useWishlistStore((state) => state.wishlist);
+  const wishlistGames = games.filter((game) => wishlist.includes(game.id));
 
   if (wishlistGames.length === 0) {
     return <EmptySection />;

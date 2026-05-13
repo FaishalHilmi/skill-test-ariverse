@@ -1,9 +1,15 @@
+import { cn } from "@/lib/utils";
+import { useWishlistStore } from "@/store/useWishlistStore";
 import { Game } from "@/types/game";
 import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function GameListCard({ game }: { game: Game }) {
+  const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
+  const wishlist = useWishlistStore((state) => state.wishlist);
+  const isWishlisted = wishlist.includes(game.id);
+
   return (
     <Link href={`/games/${game.slug}`}>
       <article
@@ -15,20 +21,6 @@ export default function GameListCard({ game }: { game: Game }) {
           hover:shadow-2xl hover:shadow-primary/10
         "
       >
-        {/* Wishlist Button */}
-        {/* <button
-          className="
-            absolute right-4 top-4 z-10
-            rounded-full bg-black/50 p-2
-            text-white/60 backdrop-blur-md
-            transition-colors duration-300
-            hover:text-red-500
-          "
-        >
-          <Heart className="h-4 w-4" />
-        </button> */}
-
-        {/* Image */}
         <div className="relative aspect-4/5 overflow-hidden">
           <Image
             src={game.coverImage}
@@ -46,7 +38,6 @@ export default function GameListCard({ game }: { game: Game }) {
             "
           />
 
-          {/* Rating */}
           <div
             className="
               absolute left-4 top-4
@@ -60,7 +51,6 @@ export default function GameListCard({ game }: { game: Game }) {
             {game.rating}
           </div>
 
-          {/* Genres & Platforms */}
           <div
             className="
               pointer-events-none absolute bottom-4 left-4
@@ -97,7 +87,6 @@ export default function GameListCard({ game }: { game: Game }) {
           </div>
         </div>
 
-        {/* Content */}
         <div className="p-5">
           <h3
             className="
@@ -111,10 +100,16 @@ export default function GameListCard({ game }: { game: Game }) {
 
           <div className="mt-auto flex items-center justify-between">
             <span className="text-sm font-bold">
-              Rp {game.price.toLocaleString("id-ID")}
+              {game.price === 0
+                ? "Gratis"
+                : `Rp ${game.price.toLocaleString("id-ID")}`}
             </span>
 
             <button
+              onClick={(e) => {
+                e.preventDefault();
+                toggleWishlist(game.id);
+              }}
               className="
                 group/btn rounded-lg
                 bg-surface-container-high p-2
@@ -123,10 +118,12 @@ export default function GameListCard({ game }: { game: Game }) {
               "
             >
               <Heart
-                className="
-                  h-4 w-4 text-on-surface-variant
-                  group-hover/btn:text-on-primary
-                "
+                className={cn(
+                  "h-4 w-4 transition-colors",
+                  isWishlisted
+                    ? "fill-red-500 text-red-500"
+                    : "text-on-surface-variant group-hover/btn:text-on-primary",
+                )}
               />
             </button>
           </div>
