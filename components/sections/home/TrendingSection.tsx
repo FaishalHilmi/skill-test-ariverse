@@ -10,18 +10,12 @@ import useLoading from "@/hooks/useLoading";
 export default function TrendingSection() {
   const isLoading = useLoading();
 
-  const featuredGames = games.filter((game) => game.featured == true).length;
-  const UnfeaturedGames = games.filter((game) => game.featured == false).length;
-
-  console.log(featuredGames);
-  console.log(UnfeaturedGames);
-
   return (
     <section className="py-12 md:py-20">
       <div className="container mx-auto px-5 lg:px-16">
         <div className="mb-8 flex items-center justify-between md:mb-12">
           <div className="flex items-center gap-3">
-            <div className="h-1 w-12 rounded-full bg-primary" />
+            <div className="h-1 w-12 rounded-full bg-primary hidden md:block" />
 
             <h2 className="font-display text-3xl font-bold md:text-4xl">
               Sedang Tren
