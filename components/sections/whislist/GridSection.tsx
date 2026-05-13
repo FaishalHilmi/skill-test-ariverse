@@ -21,8 +21,8 @@ export default function GridSection({ games }: { games: Game[] }) {
             ? Array.from({
                 length: 6,
               }).map((_, index) => <WishlistGameCardSkeleton key={index} />)
-            : games.map((game) => (
-                <WishlistGameCard key={game.id} game={game} />
+            : games.map((game, index) => (
+                <WishlistGameCard key={game.id} game={game} index={index} />
               ))}
         </div>
       </div>

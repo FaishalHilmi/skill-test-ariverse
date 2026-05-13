@@ -79,8 +79,8 @@ export function CollectionSection() {
               ))
             : filteredGames
                 .slice(0, 8)
-                .map((game) => (
-                  <CollectionGameCard key={game.id} game={game} />
+                .map((game, index) => (
+                  <CollectionGameCard key={game.id} game={game} index={index} />
                 ))}
         </div>
 

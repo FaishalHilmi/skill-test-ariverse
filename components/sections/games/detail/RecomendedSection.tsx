@@ -87,8 +87,8 @@ export default function RecommendedSection({
             ? Array.from({ length: 4 }).map((_, index) => (
                 <CollectionGameCardSkeleton key={index} />
               ))
-            : recommendedGames.map((game) => (
-                <CollectionGameCard key={game.id} game={game} />
+            : recommendedGames.map((game, index) => (
+                <CollectionGameCard key={game.id} game={game} index={index} />
               ))}
         </div>
       </div>

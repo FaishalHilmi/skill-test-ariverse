@@ -38,7 +38,9 @@ export default function TrendingSection() {
               ))
             : games
                 .slice(0, 4)
-                .map((game) => <TrendingGameCard key={game.id} game={game} />)}
+                .map((game, index) => (
+                  <TrendingGameCard key={game.id} game={game} index={index} />
+                ))}
         </div>
       </div>
     </section>
