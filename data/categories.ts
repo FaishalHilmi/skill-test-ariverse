@@ -1,8 +1,8 @@
 export const GAME_CATEGORIES = [
-  "Semua",
+  "All",
   "Action",
   "RPG",
   "Strategy",
   "Adventure",
-  "Sports",
+  "Multiplayer",
 ];
