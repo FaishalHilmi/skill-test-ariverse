@@ -44,7 +44,7 @@ export default function GalleryLightbox({
         className="
           absolute left-5
           rounded-full bg-white/10 p-3
-          text-white backdrop-blur-md
+          text-white backdrop-blur-md z-10
         "
       >
         <ChevronLeft className="h-6 w-6" />
@@ -54,7 +54,7 @@ export default function GalleryLightbox({
         className="
           relative h-[80vh] w-full
           max-w-6xl overflow-hidden
-          rounded-3xl
+          rounded-3xl z-1
         "
       >
         <Image
@@ -71,7 +71,7 @@ export default function GalleryLightbox({
         className="
           absolute right-5
           rounded-full bg-white/10 p-3
-          text-white backdrop-blur-md
+          text-white backdrop-blur-md z-10
         "
       >
         <ChevronRight className="h-6 w-6" />
