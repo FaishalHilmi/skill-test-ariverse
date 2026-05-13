@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { CollectionGameCard } from "@/components/game/card/CollectionGameCard";
 import { GAME_CATEGORIES } from "@/data/categories";
@@ -10,8 +10,16 @@ import Link from "next/link";
 import useLoading from "@/hooks/useLoading";
 
 export function CollectionSection() {
-  const [activeCategory, setActiveCategory] = useState("Semua");
+  const [activeCategory, setActiveCategory] = useState("All");
   const isLoading = useLoading();
+
+  const filteredGames = useMemo(() => {
+    if (activeCategory === "All") {
+      return games;
+    }
+
+    return games.filter((game) => game.genres.includes(activeCategory));
+  }, [activeCategory]);
 
   return (
     <section className="bg-surface-container/30 py-20">
@@ -69,7 +77,7 @@ export function CollectionSection() {
             ? Array.from({ length: 8 }).map((_, index) => (
                 <CollectionGameCardSkeleton key={index} />
               ))
-            : games
+            : filteredGames
                 .slice(0, 8)
                 .map((game) => (
                   <CollectionGameCard key={game.id} game={game} />
