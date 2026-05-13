@@ -4,6 +4,10 @@ export const YEAR_OPTIONS = [
     value: "all",
   },
   {
+    label: "2025",
+    value: "202",
+  },
+  {
     label: "2024",
     value: "2024",
   },
