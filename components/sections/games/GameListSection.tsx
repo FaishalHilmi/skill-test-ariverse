@@ -1,17 +1,40 @@
 "use client";
 
-import SidebarFilters from "@/components/game/SidebarFilters";
-import { ChevronLeft, ChevronRight, SlidersHorizontal } from "lucide-react";
-import { useState, useEffect } from "react";
-import games from "@/data/games.json";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Gamepad2,
+  SlidersHorizontal,
+} from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
 import { cn } from "@/lib/utils";
+import { SORT_OPTIONS } from "@/data/sort-options";
+import { useGameFilterStore } from "@/store/useGameFilterStore";
+import { useSearchParams } from "next/navigation";
+import SidebarFilters from "@/components/game/SidebarFilters";
+import games from "@/data/games.json";
 import GameListCard from "@/components/game/card/GameListCard";
 import SelectField from "@/components/ui/SelectField";
-import { SORT_OPTIONS } from "@/data/sort-options";
+import GameListCardSkeleton from "@/components/skeleton/card/GameListCardSkeleton";
+import useLoading from "@/hooks/useLoading";
+
+const ITEM_PER_PAGE = 9;
 
 export default function GameListSection() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [sortBy, setSortBy] = useState("rating");
+  const isLoading = useLoading();
+  const selectedGenres = useGameFilterStore((state) => state.selectedGenres);
+  const selectedPlatform = useGameFilterStore(
+    (state) => state.selectedPlatform,
+  );
+  const selectedYear = useGameFilterStore((state) => state.selectedYear);
+  const sortBy = useGameFilterStore((state) => state.sortBy);
+  const currentPage = useGameFilterStore((state) => state.currentPage);
+  const setSortBy = useGameFilterStore((state) => state.setSortBy);
+  const setCurrentPage = useGameFilterStore((state) => state.setCurrentPage);
+
+  const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("search") || "";
 
   useEffect(() => {
     if (isFilterOpen) {
@@ -23,6 +46,56 @@ export default function GameListSection() {
       document.body.style.overflow = "unset";
     };
   }, [isFilterOpen]);
+
+  const filteredGames = useMemo(() => {
+    return games
+      .filter((game) => {
+        const genreMatch =
+          selectedGenres.length === 0 ||
+          selectedGenres.some((genre) => game.genres.includes(genre));
+
+        const platformMatch =
+          selectedPlatform === "All" ||
+          game.platforms.includes(selectedPlatform);
+
+        const yearMatch =
+          selectedYear === "all" ||
+          new Date(game.releaseDate).getFullYear().toString() === selectedYear;
+
+        const searchLower = searchQuery.toLowerCase();
+
+        const searchMatch = game.title.toLowerCase().includes(searchLower);
+
+        return genreMatch && platformMatch && yearMatch && searchMatch;
+      })
+      .sort((a, b) => {
+        switch (sortBy) {
+          case "rating":
+            return b.rating - a.rating;
+
+          case "latest":
+            return (
+              new Date(b.releaseDate).getTime() -
+              new Date(a.releaseDate).getTime()
+            );
+
+          case "price-low":
+            return a.price - b.price;
+
+          case "alphabetical":
+            return a.title.localeCompare(b.title);
+
+          default:
+            return 0;
+        }
+      });
+  }, [selectedGenres, selectedPlatform, selectedYear, sortBy, searchQuery]);
+
+  const totalPages = Math.ceil(filteredGames.length / ITEM_PER_PAGE);
+  const paginatedGames = filteredGames.slice(
+    (currentPage - 1) * ITEM_PER_PAGE,
+    currentPage * ITEM_PER_PAGE,
+  );
 
   return (
     <div className="min-h-screen bg-background relative">
@@ -37,7 +110,7 @@ export default function GameListSection() {
                   Semua Game
                 </h1>
                 <p className="text-on-surface-variant font-medium">
-                  Menampilkan {games.length} judul yang tersedia
+                  Menampilkan {filteredGames.length} judul yang tersedia
                 </p>
               </div>
 
@@ -47,7 +120,15 @@ export default function GameListSection() {
                 </span>
                 <SelectField
                   value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
+                  onChange={(e) =>
+                    setSortBy(
+                      e.target.value as
+                        | "rating"
+                        | "latest"
+                        | "price-low"
+                        | "alphabetical",
+                    )
+                  }
                   options={SORT_OPTIONS}
                   className="min-w-52"
                 />
@@ -55,39 +136,99 @@ export default function GameListSection() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
-              {games.map((game) => (
-                <GameListCard key={game.id} game={game} />
-              ))}
+              {isLoading
+                ? Array.from({ length: ITEM_PER_PAGE }).map((_, index) => (
+                    <GameListCardSkeleton key={index} />
+                  ))
+                : paginatedGames.map((game) => (
+                    <GameListCard key={game.id} game={game} />
+                  ))}
             </div>
 
-            <div className="pt-12 flex justify-center">
-              <div className="flex items-center gap-2">
-                <button className="p-3 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all">
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-                {[1, 2, 3, "...", 42].map((p, i) => (
-                  <button
-                    key={i}
-                    className={cn(
-                      "h-11 w-11 rounded-xl text-sm font-display font-bold transition-all",
-                      p === 1
-                        ? "bg-primary text-on-primary shadow-lg shadow-primary/20"
-                        : "bg-surface-container text-on-surface-variant hover:bg-surface-container-high",
-                    )}
-                  >
-                    {p}
-                  </button>
-                ))}
-                <button className="p-3 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all">
-                  <ChevronRight className="h-5 w-5" />
-                </button>
+            {!isLoading && paginatedGames.length === 0 && (
+              <div className="flex flex-col items-center justify-center py-20 text-center">
+                <div
+                  className="
+      mb-6 flex h-20 w-20
+      items-center justify-center
+      rounded-full
+      bg-surface-container-high
+    "
+                >
+                  <Gamepad2
+                    className="
+        h-10 w-10
+        text-on-surface-variant
+      "
+                  />
+                </div>
+
+                <h3
+                  className="
+      mb-3 text-2xl
+      font-display font-bold
+      tracking-tight
+    "
+                >
+                  Game Tidak Ditemukan
+                </h3>
+
+                <p
+                  className="
+      max-w-md
+      text-sm md:text-base
+      font-medium
+      leading-relaxed
+      text-on-surface-variant
+    "
+                >
+                  Coba gunakan kata kunci atau kategori lain.
+                </p>
               </div>
-            </div>
+            )}
+
+            {totalPages > 1 && (
+              <div className="pt-12 flex justify-center">
+                <div className="flex items-center gap-2">
+                  <button
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    className="p-3 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"
+                  >
+                    <ChevronLeft className="h-5 w-5" />
+                  </button>
+                  {Array.from({ length: totalPages }).map((_, index) => {
+                    const pageIndex = index + 1;
+
+                    return (
+                      <button
+                        key={pageIndex}
+                        onClick={() => setCurrentPage(pageIndex)}
+                        className={cn(
+                          "h-11 w-11 rounded-xl text-sm font-display font-bold transition-all",
+                          currentPage === pageIndex
+                            ? "bg-primary text-on-primary shadow-lg shadow-primary/20"
+                            : "bg-surface-container text-on-surface-variant hover:bg-surface-container-high",
+                        )}
+                      >
+                        {pageIndex}
+                      </button>
+                    );
+                  })}
+                  <button
+                    disabled={currentPage == totalPages}
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    className="p-3 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"
+                  >
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Floating Action Button for Filters - Mobile & Tablet Only */}
       <button
         onClick={() => setIsFilterOpen(true)}
         className="lg:hidden fixed bottom-8 right-8 z-70 h-14 w-14 rounded-full bg-primary text-on-primary shadow-2xl shadow-primary/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all"
@@ -96,7 +237,6 @@ export default function GameListSection() {
         <SlidersHorizontal className="h-6 w-6" />
       </button>
 
-      {/* Filter Drawer Overlay */}
       {isFilterOpen && (
         <div className="lg:hidden fixed inset-0 z-60 flex items-center justify-center p-4">
           <div
