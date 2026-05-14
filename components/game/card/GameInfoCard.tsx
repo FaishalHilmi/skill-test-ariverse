@@ -1,4 +1,3 @@
-import { Gamepad2, Monitor } from "lucide-react";
 import { Game } from "@/types/game";
 import { PLATFORM_ICONS } from "@/lib/platform-icons";
 

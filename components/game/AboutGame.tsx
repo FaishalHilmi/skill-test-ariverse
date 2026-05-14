@@ -1,4 +1,3 @@
-import { CheckCircle2 } from "lucide-react";
 import { Game } from "@/types/game";
 
 export default function AboutGame({ game }: { game: Game }) {
