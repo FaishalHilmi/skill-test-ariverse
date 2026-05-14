@@ -89,7 +89,6 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* MOBILE NAVIGATION */}
       {isMenuOpen && (
         <div className="animate-in slide-in-from-top-4 absolute top-20 left-0 flex w-full flex-col gap-6 border-b border-outline/10 bg-background p-6 duration-300 fade-in md:hidden">
           <div className="flex flex-col gap-4">
