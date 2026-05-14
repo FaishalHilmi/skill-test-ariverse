@@ -101,7 +101,7 @@ export default function HeroSection() {
                   </FadeUpText>
 
                   <div className="flex flex-col sm:flex-row items-center gap-4">
-                    <FadeUpText delay={0.3}>
+                    <FadeUpText delay={0.3} className="w-full md:w-fit">
                       <Link
                         href={`/games/${game.slug}`}
                         className={cn(
