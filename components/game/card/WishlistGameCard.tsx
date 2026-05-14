@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import FadeUp from "@/components/animations/FadeUp";
 import { Heart, ShoppingCart } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, formatRupiah } from "@/lib/utils";
 import { useWishlistStore } from "@/store/useWishlistStore";
 import { CardProps } from "@/types/card";
 
@@ -165,7 +165,7 @@ export default function WishlistGameCard({ game, index = 0 }: CardProps) {
                   line-through
                 "
               >
-                {`Rp ${(game.price + game.price * 0.15).toLocaleString("id-ID")}`}
+                {formatRupiah(game.price + game.price * 0.15)}
               </span>
             )}
 
@@ -179,44 +179,43 @@ export default function WishlistGameCard({ game, index = 0 }: CardProps) {
                 game.price === 0 ? "italic text-primary" : "text-on-surface",
               )}
             >
-              {game.price === 0
-                ? "GRATIS"
-                : `Rp ${game.price.toLocaleString("id-ID")}`}
+              {game.price === 0 ? "GRATIS" : formatRupiah(game.price)}
             </span>
           </div>
 
           <button
             className={cn(
               `
-                group/btn relative flex
-                items-center gap-2
-                overflow-hidden rounded-2xl
-                px-6 py-3.5
-                text-[10px] font-bold
-                uppercase tracking-widest
-                transition-all
-                active:scale-95
-              `,
+      group/btn relative flex
+      items-center gap-2
+      overflow-hidden rounded-2xl
+      px-6 py-3.5
+      text-[10px] font-bold
+      uppercase tracking-widest
+      transition-all
+      active:scale-95
+    `,
               game.price === 0
                 ? `
-                  bg-secondary
-                  text-on-secondary
-                  shadow-lg shadow-secondary/20
-                `
+        bg-emerald-500
+        text-white
+        shadow-lg shadow-emerald-500/20
+        hover:bg-emerald-400
+      `
                 : `
-                  bg-primary
-                  text-on-primary
-                  shadow-lg shadow-primary/20
-                `,
+        bg-primary
+        text-on-primary
+        shadow-lg shadow-primary/20
+      `,
             )}
           >
             <div
               className="
-                absolute inset-0
-                translate-y-full bg-white/10
-                transition-transform duration-300
-                group-hover/btn:translate-y-0
-              "
+      absolute inset-0
+      translate-y-full bg-white/10
+      transition-transform duration-300
+      group-hover/btn:translate-y-0
+    "
             />
 
             <span className="relative">
@@ -225,10 +224,10 @@ export default function WishlistGameCard({ game, index = 0 }: CardProps) {
 
             <ShoppingCart
               className="
-                relative h-3.5 w-3.5
-                transition-transform
-                group-hover/btn:scale-110
-              "
+      relative h-3.5 w-3.5
+      transition-transform
+      group-hover/btn:scale-110
+    "
             />
           </button>
         </div>

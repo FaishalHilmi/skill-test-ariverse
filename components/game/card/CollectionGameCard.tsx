@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Star } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, formatRupiah } from "@/lib/utils";
 import { PLATFORM_ICONS } from "@/lib/platform-icons";
 import FadeUp from "@/components/animations/FadeUp";
 import { CardProps } from "@/types/card";
@@ -79,9 +79,7 @@ export function CollectionGameCard({ game, index = 0 }: CardProps) {
                 "group-hover:text-on-primary",
               )}
             >
-              {game.price === 0
-                ? "Gratis"
-                : `Rp ${game.price.toLocaleString("id-ID")}`}
+              {game.price === 0 ? "Gratis" : formatRupiah(game.price)}
             </div>
           </div>
         </div>
