@@ -1,6 +1,6 @@
-import { cn } from "@/lib/utils";
+import { cn, formatRupiah } from "@/lib/utils";
 import { useWishlistStore } from "@/store/useWishlistStore";
-import { Heart } from "lucide-react";
+import { Heart, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import FadeUp from "@/components/animations/FadeUp";
@@ -42,7 +42,7 @@ export default function GameListCard({ game, index = 0 }: CardProps) {
 
           <div
             className="
-              absolute left-4 top-4
+              absolute left-4 top-4 gap-1
               inline-flex items-center
               rounded-lg bg-black/60
               px-2.5 py-1.5
@@ -50,7 +50,8 @@ export default function GameListCard({ game, index = 0 }: CardProps) {
               backdrop-blur-md
             "
           >
-            {game.rating}
+            <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
+            <span>{game.rating}</span>
           </div>
 
           <div
@@ -102,9 +103,7 @@ export default function GameListCard({ game, index = 0 }: CardProps) {
 
           <div className="mt-auto flex items-center justify-between">
             <span className="text-sm font-bold">
-              {game.price === 0
-                ? "Gratis"
-                : `Rp ${game.price.toLocaleString("id-ID")}`}
+              {game.price === 0 ? "Gratis" : formatRupiah(game.price)}
             </span>
 
             <button
