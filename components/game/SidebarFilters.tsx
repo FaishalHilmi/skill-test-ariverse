@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 import SelectField from "../ui/SelectField";
 import { YEAR_OPTIONS } from "@/data/years-options";
-import { GAME_CATEGORIES } from "@/data/categories";
+import { GAME_CATEGORY_MAP } from "@/data/categories";
 import { GAME_PLATFORMS } from "@/data/platform";
 import { useGameFilterStore } from "@/store/useGameFilterStore";
 
@@ -57,7 +57,7 @@ export default function SidebarFilters({
           Genre
         </h4>
         <div className="space-y-3">
-          {GAME_CATEGORIES.slice(1, 6).map((genre) => (
+          {Object.keys(GAME_CATEGORY_MAP).map((genre) => (
             <label
               key={genre}
               className="flex items-center gap-3 cursor-pointer group"
@@ -68,6 +68,7 @@ export default function SidebarFilters({
                 onChange={() => toggleGenre(genre)}
                 className="w-5 h-5 rounded border-outline/30 bg-surface-container text-primary focus:ring-primary/20 accent-primary cursor-pointer"
               />
+
               <span className="text-sm font-medium text-on-surface-variant group-hover:text-on-surface transition-colors">
                 {genre}
               </span>

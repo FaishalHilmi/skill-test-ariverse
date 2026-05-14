@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { CollectionGameCard } from "@/components/game/card/CollectionGameCard";
-import { GAME_CATEGORIES } from "@/data/categories";
+import { GAME_CATEGORY_MAP } from "@/data/categories";
 import { CollectionGameCardSkeleton } from "@/components/skeleton/card/CollectionGameCardSkeleton";
 import games from "@/data/games.json";
 import Link from "next/link";
@@ -47,7 +47,7 @@ export function CollectionSection() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            {GAME_CATEGORIES.map((category) => (
+            {Object.keys(GAME_CATEGORY_MAP).map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}

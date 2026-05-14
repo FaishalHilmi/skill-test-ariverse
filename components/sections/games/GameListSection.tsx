@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { SORT_OPTIONS } from "@/data/sort-options";
 import { useGameFilterStore } from "@/store/useGameFilterStore";
 import { useSearchParams } from "next/navigation";
+import { GAME_CATEGORY_MAP } from "@/data/categories";
 import SidebarFilters from "@/components/game/SidebarFilters";
 import games from "@/data/games.json";
 import GameListCard from "@/components/game/card/GameListCard";
@@ -54,7 +55,11 @@ export default function GameListSection() {
       .filter((game) => {
         const genreMatch =
           selectedGenres.length === 0 ||
-          selectedGenres.some((genre) => game.genres.includes(genre));
+          selectedGenres.some((category) =>
+            game.genres.some((genre) =>
+              GAME_CATEGORY_MAP[category]?.includes(genre),
+            ),
+          );
 
         const platformMatch =
           selectedPlatform === "All" ||
