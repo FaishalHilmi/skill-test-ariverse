@@ -1,21 +1,15 @@
 "use client";
 
+import { AnimatedTextProps } from "@/types/animation";
 import { motion } from "framer-motion";
 import { ElementType, ReactNode, useRef } from "react";
-
-type BlurRevealTextProps = {
-  children: ReactNode;
-  as?: ElementType;
-  className?: string;
-  delay?: number;
-};
 
 export default function BlurRevealText({
   children,
   as: Component = "div",
   className,
   delay = 0,
-}: BlurRevealTextProps) {
+}: AnimatedTextProps) {
   const hasAnimated = useRef(false);
   const MotionComponent = motion.create(Component);
 
