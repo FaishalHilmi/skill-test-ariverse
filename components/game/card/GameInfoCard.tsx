@@ -1,5 +1,6 @@
 import { Game } from "@/types/game";
 import { PLATFORM_ICONS } from "@/lib/platform-icons";
+import { formatDate } from "@/lib/utils";
 
 export default function GameInfoCard({ game }: { game: Game }) {
   return (
@@ -34,7 +35,7 @@ export default function GameInfoCard({ game }: { game: Game }) {
             </span>
 
             <span className="text-sm font-display font-bold text-on-surface">
-              {game.releaseDate}
+              {formatDate(game.releaseDate)}
             </span>
           </div>
 
