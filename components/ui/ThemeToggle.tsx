@@ -13,13 +13,15 @@ export function ThemeToggle() {
 
   return (
     <button
+      aria-label={
+        theme === "dark" ? "Aktifkan light mode" : "Aktifkan dark mode"
+      }
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className={cn(
         "p-2 rounded-full transition-all duration-300",
         "bg-surface-container hover:bg-surface-container-high text-on-surface",
         "border border-outline/10 shadow-sm",
       )}
-      aria-label="Toggle theme"
     >
       {theme === "dark" ? (
         <Sun className="h-5 w-5" />

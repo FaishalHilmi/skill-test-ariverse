@@ -76,6 +76,7 @@ export default function WishlistGameCard({ game, index = 0 }: CardProps) {
             active:scale-95
             dark:bg-surface-container/90
           "
+          aria-label="Hapus dari wishlist"
         >
           <Heart
             className="

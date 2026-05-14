@@ -207,6 +207,7 @@ export default function GameListSection() {
               <div className="pt-12 flex justify-center">
                 <div className="flex items-center gap-2">
                   <button
+                    aria-label="Halaman sebelumnya"
                     disabled={currentPage === 1}
                     onClick={() => setCurrentPage(currentPage - 1)}
                     className="p-3 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"
@@ -218,6 +219,10 @@ export default function GameListSection() {
 
                     return (
                       <button
+                        aria-label={`Halaman ${pageIndex}`}
+                        aria-current={
+                          currentPage === pageIndex ? "page" : undefined
+                        }
                         key={pageIndex}
                         onClick={() => setCurrentPage(pageIndex)}
                         className={cn(
@@ -232,6 +237,7 @@ export default function GameListSection() {
                     );
                   })}
                   <button
+                    aria-label="Halaman berikutnya"
                     disabled={currentPage == totalPages}
                     onClick={() => setCurrentPage(currentPage + 1)}
                     className="p-3 rounded-xl bg-surface-container text-on-surface-variant hover:bg-surface-container-high transition-all"

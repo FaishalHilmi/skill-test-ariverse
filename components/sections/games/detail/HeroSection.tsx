@@ -87,6 +87,9 @@ export default function HeroSection({ game }: { game: Game }) {
                   toggleWishlist(game.id);
                 }}
                 className="p-3 md:p-4 rounded-xl md:rounded-2xl glass border border-outline/20 text-on-surface hover:bg-surface-container transition-colors group"
+                aria-label={
+                  isWishlisted ? "Hapus dari wishlist" : "Tambahkan ke wishlist"
+                }
               >
                 <Heart
                   className={cn(

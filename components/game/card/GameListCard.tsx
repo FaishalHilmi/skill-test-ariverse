@@ -117,6 +117,9 @@ export default function GameListCard({ game, index = 0 }: CardProps) {
                 transition-colors duration-300
                 hover:bg-primary
               "
+              aria-label={
+                isWishlisted ? "Hapus dari wishlist" : "Tambahkan ke wishlist"
+              }
             >
               <Heart
                 className={cn(
