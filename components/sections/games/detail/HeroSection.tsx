@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { Game } from "@/types/game";
 import { Heart, Star } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useWishlistStore } from "@/store/useWishlistStore";
 import FadeUpText from "@/components/animations/FadeUpText";
 import BlurRevealText from "@/components/animations/BlurRevealText";
