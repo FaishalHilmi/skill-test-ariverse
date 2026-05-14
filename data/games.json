@@ -18,7 +18,7 @@
     "developer": "NovaForge Studio",
     "publisher": "Aether Interactive",
     "releaseDate": "2025-03-14",
-    "rating": 4.5,
+    "rating": 9.5,
     "price": 699000,
     "tags": ["Open World", "Story Rich", "Singleplayer"],
     "featured": true
@@ -42,7 +42,7 @@
     "developer": "Velocity Arts",
     "publisher": "TurboPlay",
     "releaseDate": "2024-11-02",
-    "rating": 3.7,
+    "rating": 8.7,
     "price": 499000,
     "tags": ["Multiplayer", "Cars", "Competitive"],
     "featured": false
@@ -66,7 +66,7 @@
     "developer": "IronCrown Studio",
     "publisher": "RealmWorks",
     "releaseDate": "2023-08-19",
-    "rating": 3.9,
+    "rating": 8.9,
     "price": 359000,
     "tags": ["Fantasy", "Management", "War"],
     "featured": false
@@ -90,7 +90,7 @@
     "developer": "BlackRune",
     "publisher": "Void Entertainment",
     "releaseDate": "2025-01-11",
-    "rating": 4.3,
+    "rating": 9.3,
     "price": 799000,
     "tags": ["Dark Fantasy", "Boss Fight", "Singleplayer"],
     "featured": true
@@ -114,7 +114,7 @@
     "developer": "TinyFox Studio",
     "publisher": "PixelHouse",
     "releaseDate": "2024-05-20",
-    "rating": 3.5,
+    "rating": 8.5,
     "price": 189000,
     "tags": ["Pixel Art", "Story Rich", "Puzzle"],
     "featured": false
@@ -138,7 +138,7 @@
     "developer": "Nova Byte",
     "publisher": "Titan Play",
     "releaseDate": "2024-09-12",
-    "rating": 3.8,
+    "rating": 7.8,
     "price": 429000,
     "tags": ["Multiplayer", "Competitive", "Shooter"],
     "featured": false
@@ -162,7 +162,7 @@
     "developer": "Nova Velocity",
     "publisher": "HyperGrid Studio",
     "releaseDate": "2025-03-22",
-    "rating": 4.6,
+    "rating": 8.6,
     "price": 699000,
     "tags": ["Cyberpunk", "Multiplayer", "Fast-Paced"],
     "featured": false
@@ -186,7 +186,7 @@
     "developer": "NightByte Studio",
     "publisher": "Quantum Interactive",
     "releaseDate": "2025-04-09",
-    "rating": 4.4,
+    "rating": 9.4,
     "price": 649000,
     "tags": ["Cyberpunk", "Stealth", "Singleplayer"],
     "featured": true
@@ -210,7 +210,7 @@
     "developer": "Iron Crown Studio",
     "publisher": "Empire Interactive",
     "releaseDate": "2025-02-18",
-    "rating": 4.5,
+    "rating": 9.5,
     "price": 559000,
     "tags": ["Kingdom", "War", "Singleplayer"],
     "featured": true
@@ -234,7 +234,7 @@
     "developer": "SolarByte Studio",
     "publisher": "Nova Interactive",
     "releaseDate": "2025-04-10",
-    "rating": 3.9,
+    "rating": 7.9,
     "price": 649000,
     "tags": ["Exploration", "Singleplayer", "Story Rich"],
     "featured": false
@@ -258,7 +258,7 @@
     "developer": "Mythic Forge",
     "publisher": "Elder Realm",
     "releaseDate": "2024-10-17",
-    "rating": 4.2,
+    "rating": 9.2,
     "price": 729000,
     "tags": ["Fantasy", "Dragons", "Story Rich"],
     "featured": true
@@ -282,7 +282,7 @@
     "developer": "Nitro Pulse",
     "publisher": "Turbo Vision",
     "releaseDate": "2023-12-01",
-    "rating": 3.3,
+    "rating": 8.3,
     "price": 399000,
     "tags": ["Cars", "Multiplayer", "Competitive"],
     "featured": false
@@ -306,7 +306,7 @@
     "developer": "Nightfall Studio",
     "publisher": "Darkline Games",
     "releaseDate": "2025-01-25",
-    "rating": 3.8,
+    "rating": 8.8,
     "price": 559000,
     "tags": ["Horror", "Story Rich", "Puzzle"],
     "featured": false
@@ -330,7 +330,7 @@
     "developer": "SteelCore",
     "publisher": "Future Dynamics",
     "releaseDate": "2024-06-14",
-    "rating": 3.7,
+    "rating": 8.7,
     "price": 589000,
     "tags": ["Robots", "Sci-Fi", "Multiplayer"],
     "featured": false
@@ -354,7 +354,7 @@
     "developer": "ShadowByte",
     "publisher": "CyberCore",
     "releaseDate": "2025-05-08",
-    "rating": 3.0,
+    "rating": 8.0,
     "price": 689000,
     "tags": ["Cyberpunk", "Stealth", "Singleplayer"],
     "featured": false
@@ -378,7 +378,7 @@
     "developer": "BlueWave Studio",
     "publisher": "DeepSea Interactive",
     "releaseDate": "2024-08-21",
-    "rating": 3.6,
+    "rating": 8.6,
     "price": 459000,
     "tags": ["Exploration", "Crafting", "Open World"],
     "featured": false
@@ -402,7 +402,7 @@
     "developer": "Blaze Interactive",
     "publisher": "Crimson Games",
     "releaseDate": "2023-10-30",
-    "rating": 3.2,
+    "rating": 8.2,
     "price": 0,
     "tags": ["PvP", "Competitive", "Online"],
     "featured": false
@@ -426,7 +426,7 @@
     "developer": "Silver Crown",
     "publisher": "Empire Works",
     "releaseDate": "2024-04-09",
-    "rating": 3.8,
+    "rating": 8.8,
     "price": 379000,
     "tags": ["Fantasy", "War", "Tactical"],
     "featured": false
@@ -450,7 +450,7 @@
     "developer": "Galaxy Forge",
     "publisher": "Infinite Worlds",
     "releaseDate": "2025-06-19",
-    "rating": 4.4,
+    "rating": 9.4,
     "price": 799000,
     "tags": ["Space", "Story Rich", "Exploration"],
     "featured": true
@@ -474,7 +474,7 @@
     "developer": "Crimson Forge",
     "publisher": "Shadow Realm",
     "releaseDate": "2024-01-15",
-    "rating": 3.7,
+    "rating": 8.7,
     "price": 279000,
     "tags": ["Dungeon", "Replayability", "Singleplayer"],
     "featured": false
@@ -498,7 +498,7 @@
     "developer": "TimeShift Studio",
     "publisher": "Nova Dynamics",
     "releaseDate": "2025-03-02",
-    "rating": 4.1,
+    "rating": 9.1,
     "price": 699000,
     "tags": ["Time Control", "Shooter", "Singleplayer"],
     "featured": true
@@ -522,7 +522,7 @@
     "developer": "IronWolf Games",
     "publisher": "Empire Studio",
     "releaseDate": "2023-09-11",
-    "rating": 3.5,
+    "rating": 8.5,
     "price": 329000,
     "tags": ["Fantasy", "Turn-Based", "War"],
     "featured": false
@@ -546,7 +546,7 @@
     "developer": "DarkMoon Studio",
     "publisher": "FearWorks",
     "releaseDate": "2024-10-27",
-    "rating": 3.8,
+    "rating": 8.8,
     "price": 489000,
     "tags": ["Zombies", "Co-op", "Horror"],
     "featured": false
@@ -570,7 +570,7 @@
     "developer": "Velocity Nova",
     "publisher": "TurboX",
     "releaseDate": "2025-02-12",
-    "rating": 3.4,
+    "rating": 8.4,
     "price": 449000,
     "tags": ["Futuristic", "Competitive", "Cars"],
     "featured": false
@@ -594,7 +594,7 @@
     "developer": "Silver Flame",
     "publisher": "Mythic Interactive",
     "releaseDate": "2024-11-18",
-    "rating": 3.9,
+    "rating": 8.9,
     "price": 749000,
     "tags": ["Fantasy", "Open World", "Boss Fight"],
     "featured": false
@@ -618,7 +618,7 @@
     "developer": "Nebula Core",
     "publisher": "Galaxy Interactive",
     "releaseDate": "2025-04-22",
-    "rating": 3.9,
+    "rating": 8.9,
     "price": 599000,
     "tags": ["Aliens", "Multiplayer", "Sci-Fi"],
     "featured": false
@@ -642,7 +642,7 @@
     "developer": "Sakura Dream",
     "publisher": "Eastern Tales",
     "releaseDate": "2024-06-09",
-    "rating": 3.7,
+    "rating": 8.7,
     "price": 529000,
     "tags": ["Anime", "Story Rich", "Turn-Based"],
     "featured": false
@@ -666,7 +666,7 @@
     "developer": "Iron Legion",
     "publisher": "Empire Forge",
     "releaseDate": "2023-07-14",
-    "rating": 3.5,
+    "rating": 8.5,
     "price": 389000,
     "tags": ["War", "Management", "Tactical"],
     "featured": false
@@ -690,7 +690,7 @@
     "developer": "Stellar Works",
     "publisher": "Infinity Games",
     "releaseDate": "2025-08-01",
-    "rating": 4.5,
+    "rating": 9.5,
     "price": 849000,
     "tags": ["Space", "Story Rich", "Exploration"],
     "featured": true
@@ -714,7 +714,7 @@
     "developer": "Nightfall Studio",
     "publisher": "Eclipse Interactive",
     "releaseDate": "2024-11-21",
-    "rating": 4.7,
+    "rating": 9.7,
     "price": 729000,
     "tags": ["Dark Fantasy", "Boss Fight", "Open World"],
     "featured": true
