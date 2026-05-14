@@ -1,28 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import FadeUp from "@/components/animations/FadeUp";
 import { Heart, ShoppingCart } from "lucide-react";
-import { Game } from "@/types/game";
 import { cn } from "@/lib/utils";
 import { useWishlistStore } from "@/store/useWishlistStore";
+import { CardProps } from "@/types/card";
 
-export default function WishlistGameCard({ game }: { game: Game }) {
+export default function WishlistGameCard({ game, index = 0 }: CardProps) {
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
 
   return (
-    <motion.article
-      initial={{
-        opacity: 0,
-        y: 20,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-      }}
-      transition={{
-        delay: game.id * 0.02,
-      }}
-      className="
+    <FadeUp
+      delay={index * 0.05}
+      className="transform-gpu
+        will-change-transform
         group relative
         w-[85%] shrink-0
         snap-start overflow-hidden
@@ -33,8 +24,7 @@ export default function WishlistGameCard({ game }: { game: Game }) {
         hover:shadow-2xl
         hover:shadow-primary/5
         sm:w-[45%]
-        md:w-full
-      "
+        md:w-full"
     >
       <Link
         href={`/games/${game.slug}`}
@@ -175,7 +165,7 @@ export default function WishlistGameCard({ game }: { game: Game }) {
                   line-through
                 "
               >
-                Rp 699.000
+                {`Rp ${(game.price + game.price * 0.15).toLocaleString("id-ID")}`}
               </span>
             )}
 
@@ -243,6 +233,6 @@ export default function WishlistGameCard({ game }: { game: Game }) {
           </button>
         </div>
       </div>
-    </motion.article>
+    </FadeUp>
   );
 }

@@ -1,12 +1,14 @@
-import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Game } from "@/types/game";
+import FadeUp from "@/components/animations/FadeUp";
+import { Star } from "lucide-react";
+import { CardProps } from "@/types/card";
 
-export default function TrendingGameCard({ game }: { game: Game }) {
+export default function TrendingGameCard({ game, index = 0 }: CardProps) {
   return (
     <Link href={`/games/${game.slug}`}>
-      <article
+      <FadeUp
+        delay={index * 0.05}
         className="
           group relative overflow-hidden rounded-2xl
           bg-surface-container
@@ -71,7 +73,7 @@ export default function TrendingGameCard({ game }: { game: Game }) {
             ))}
           </div>
         </div>
-      </article>
+      </FadeUp>
     </Link>
   );
 }

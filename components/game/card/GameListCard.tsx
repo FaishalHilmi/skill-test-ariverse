@@ -1,18 +1,20 @@
 import { cn } from "@/lib/utils";
 import { useWishlistStore } from "@/store/useWishlistStore";
-import { Game } from "@/types/game";
 import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import FadeUp from "@/components/animations/FadeUp";
+import { CardProps } from "@/types/card";
 
-export default function GameListCard({ game }: { game: Game }) {
+export default function GameListCard({ game, index = 0 }: CardProps) {
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
   const wishlist = useWishlistStore((state) => state.wishlist);
   const isWishlisted = wishlist.includes(game.id);
 
   return (
     <Link href={`/games/${game.slug}`}>
-      <article
+      <FadeUp
+        delay={index * 0.05}
         className="
           group relative overflow-hidden rounded-2xl
           bg-surface-container
@@ -128,7 +130,7 @@ export default function GameListCard({ game }: { game: Game }) {
             </button>
           </div>
         </div>
-      </article>
+      </FadeUp>
     </Link>
   );
 }

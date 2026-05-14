@@ -1,14 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Star } from "lucide-react";
-import { Game } from "@/types/game";
 import { cn } from "@/lib/utils";
 import { PLATFORM_ICONS } from "@/lib/platform-icons";
+import FadeUp from "@/components/animations/FadeUp";
+import { CardProps } from "@/types/card";
 
-export function CollectionGameCard({ game }: { game: Game }) {
+export function CollectionGameCard({ game, index = 0 }: CardProps) {
   return (
     <Link href={`/games/${game.slug}`}>
-      <article
+      <FadeUp
+        delay={index * 0.05}
         className={cn(
           "group relative overflow-hidden rounded-3xl",
           "border border-outline/10",
@@ -83,7 +85,7 @@ export function CollectionGameCard({ game }: { game: Game }) {
             </div>
           </div>
         </div>
-      </article>
+      </FadeUp>
     </Link>
   );
 }
