@@ -62,7 +62,7 @@ export default function HeroSection({ game }: { game: Game }) {
                     key={i}
                     className={cn(
                       "h-3 w-3 md:h-4 md:w-4 fill-current",
-                      i >= Math.floor(game.rating) && "opacity-30",
+                      i >= Math.round(game.rating / 2) && "opacity-30",
                     )}
                   />
                 ))}
