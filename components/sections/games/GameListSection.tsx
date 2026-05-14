@@ -17,6 +17,8 @@ import GameListCard from "@/components/game/card/GameListCard";
 import SelectField from "@/components/ui/SelectField";
 import GameListCardSkeleton from "@/components/skeleton/card/GameListCardSkeleton";
 import useLoading from "@/hooks/useLoading";
+import BlurRevealText from "@/components/animations/BlurRevealText";
+import FadeUpText from "@/components/animations/FadeUpText";
 
 const ITEM_PER_PAGE = 9;
 
@@ -98,7 +100,7 @@ export default function GameListSection() {
   );
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <section className="min-h-screen bg-background relative">
       <div className="container mx-auto px-5 lg:px-16 pt-8 md:pt-12 pb-12 md:pb-20">
         <div className="flex flex-col lg:flex-row gap-12">
           <SidebarFilters />
@@ -106,12 +108,19 @@ export default function GameListSection() {
           <div className="flex-1 space-y-10">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div>
-                <h1 className="text-4xl font-display font-bold mb-2 tracking-tight">
+                <BlurRevealText
+                  as="h1"
+                  className="text-4xl font-display font-bold mb-2 tracking-tight"
+                >
                   Semua Game
-                </h1>
-                <p className="text-on-surface-variant font-medium">
+                </BlurRevealText>
+                <FadeUpText
+                  as="p"
+                  delay={0.1}
+                  className="text-on-surface-variant font-medium"
+                >
                   Menampilkan {filteredGames.length} judul yang tersedia
-                </p>
+                </FadeUpText>
               </div>
 
               <div className="flex items-center gap-4">
@@ -140,8 +149,8 @@ export default function GameListSection() {
                 ? Array.from({ length: ITEM_PER_PAGE }).map((_, index) => (
                     <GameListCardSkeleton key={index} />
                   ))
-                : paginatedGames.map((game) => (
-                    <GameListCard key={game.id} game={game} />
+                : paginatedGames.map((game, index) => (
+                    <GameListCard key={game.id} game={game} index={index} />
                   ))}
             </div>
 
@@ -173,7 +182,9 @@ export default function GameListSection() {
                   Game Tidak Ditemukan
                 </h3>
 
-                <p
+                <FadeUpText
+                  as="p"
+                  delay={0.1}
                   className="
       max-w-md
       text-sm md:text-base
@@ -183,7 +194,7 @@ export default function GameListSection() {
     "
                 >
                   Coba gunakan kata kunci atau kategori lain.
-                </p>
+                </FadeUpText>
               </div>
             )}
 
@@ -253,6 +264,6 @@ export default function GameListSection() {
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 }

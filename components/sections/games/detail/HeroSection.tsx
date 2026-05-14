@@ -6,6 +6,8 @@ import { Heart, Star } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useWishlistStore } from "@/store/useWishlistStore";
+import FadeUpText from "@/components/animations/FadeUpText";
+import BlurRevealText from "@/components/animations/BlurRevealText";
 
 export default function HeroSection({ game }: { game: Game }) {
   const toggleWishlist = useWishlistStore((state) => state.toggleWishlist);
@@ -28,7 +30,7 @@ export default function HeroSection({ game }: { game: Game }) {
 
       <div className="container mx-auto px-5 lg:px-16 pb-12 relative z-10">
         <div className="max-w-4xl space-y-6">
-          <div className="flex flex-wrap gap-2">
+          <FadeUpText delay={0} className="flex flex-wrap gap-2">
             {game.genres.map((genre) => (
               <span
                 key={genre}
@@ -40,17 +42,20 @@ export default function HeroSection({ game }: { game: Game }) {
             <span className="px-3 py-1 rounded-full bg-surface-container/40 backdrop-blur-md border border-outline/20 text-[10px] font-display font-bold uppercase tracking-widest text-on-surface">
               {game.platforms.join(" / ")}
             </span>
-          </div>
+          </FadeUpText>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+          <BlurRevealText
+            as="h1"
+            delay={0.1}
             className="text-5xl md:text-7xl font-display font-bold tracking-tighter"
           >
             {game.title}
-          </motion.h1>
+          </BlurRevealText>
 
-          <div className="flex flex-wrap items-center gap-4 md:gap-6">
+          <FadeUpText
+            delay={0.2}
+            className="flex flex-wrap items-center gap-4 md:gap-6"
+          >
             <div className="flex items-center gap-2">
               <div className="flex text-primary">
                 {[...Array(5)].map((_, i) => (
@@ -85,7 +90,6 @@ export default function HeroSection({ game }: { game: Game }) {
                 className="p-3 md:p-4 rounded-xl md:rounded-2xl glass border border-outline/20 text-on-surface hover:bg-surface-container transition-colors group"
               >
                 <Heart
-                  // className="h-5 w-5 md:h-6 md:w-6 group-hover:fill-red-500 group-hover:text-red-500 transition-colors"
                   className={cn(
                     "h-5 w-5 md:h-6 md:w-6 transition-colors",
                     isWishlisted
@@ -95,7 +99,7 @@ export default function HeroSection({ game }: { game: Game }) {
                 />
               </button>
             </div>
-          </div>
+          </FadeUpText>
         </div>
       </div>
     </section>

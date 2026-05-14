@@ -1,3 +1,6 @@
+import BlurRevealText from "@/components/animations/BlurRevealText";
+import FadeUpText from "@/components/animations/FadeUpText";
+
 export default function HeaderSection({ totalItems }: { totalItems: number }) {
   return (
     <section className="pb-8 pt-8 md:pb-12 md:pt-20">
@@ -10,28 +13,34 @@ export default function HeaderSection({ totalItems }: { totalItems: number }) {
           "
         >
           <div className="space-y-2 md:space-y-4">
-            <h1
+            <BlurRevealText
+              as="h1"
               className="
-                text-[40px] font-bold leading-[1.1]
+                text-[40px]
+                font-bold leading-[1.1]
                 tracking-tighter
                 md:text-7xl
               "
             >
               Wishlist Saya
-            </h1>
+            </BlurRevealText>
 
-            <p
+            <FadeUpText
+              as="p"
+              delay={0.1}
               className="
-                max-w-xs text-sm font-medium
+                max-w-xs text-sm
+                font-medium
                 text-on-surface-variant
                 md:max-w-md md:text-lg
               "
             >
               Kumpulan game impian yang sedang Anda pantau harganya.
-            </p>
+            </FadeUpText>
           </div>
 
-          <div
+          <FadeUpText
+            delay={0.2}
             className="
               mt-4 flex flex-col items-start
               md:mt-0 md:items-end
@@ -48,7 +57,7 @@ export default function HeaderSection({ totalItems }: { totalItems: number }) {
             </p>
 
             <p className="text-3xl font-bold">{totalItems} Game Terpilih</p>
-          </div>
+          </FadeUpText>
         </div>
       </div>
     </section>
