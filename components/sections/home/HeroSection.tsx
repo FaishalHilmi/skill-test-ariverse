@@ -7,6 +7,7 @@ import games from "@/data/games.json";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
+import FadeUpText from "@/components/animations/FadeUpText";
 
 export default function HeroSection() {
   const featuredGames = games.filter((game) => game.featured);
@@ -53,7 +54,8 @@ export default function HeroSection() {
 
               <div className="container mx-auto px-5 lg:px-16 relative z-10">
                 <div className="max-w-2xl animate-in fade-in slide-in-from-left-8 duration-700">
-                  <div
+                  <FadeUpText
+                    delay={0}
                     className="
                       inline-block px-4 py-1.5 mb-6
                       rounded-full bg-primary/20
@@ -71,10 +73,11 @@ export default function HeroSection() {
                     >
                       Game Unggulan
                     </span>
-                  </div>
+                  </FadeUpText>
 
-                  {/* Title */}
-                  <h1
+                  <FadeUpText
+                    as="h1"
+                    delay={0.1}
                     className="
                       text-5xl md:text-7xl
                       font-display font-bold
@@ -82,9 +85,11 @@ export default function HeroSection() {
                     "
                   >
                     {game.title}
-                  </h1>
+                  </FadeUpText>
 
-                  <p
+                  <FadeUpText
+                    as="p"
+                    delay={0.2}
                     className="
                       text-lg md:text-xl
                       text-on-surface-variant
@@ -93,21 +98,23 @@ export default function HeroSection() {
                     "
                   >
                     {game.description}
-                  </p>
+                  </FadeUpText>
 
                   <div className="flex flex-col sm:flex-row items-center gap-4">
-                    <Link
-                      href={`/games/${game.slug}`}
-                      className={cn(
-                        "w-full sm:w-auto px-8 py-4 rounded-full flex items-center justify-center gap-2",
-                        "bg-primary text-on-primary font-display font-bold",
-                        "shadow-lg shadow-primary/30",
-                        "hover:scale-105 transition-all",
-                      )}
-                    >
-                      <Play className="fill-current h-4 w-4" />
-                      Lihat Detail
-                    </Link>
+                    <FadeUpText delay={0.3}>
+                      <Link
+                        href={`/games/${game.slug}`}
+                        className={cn(
+                          "w-full sm:w-auto px-8 py-4 rounded-full flex items-center justify-center gap-2",
+                          "bg-primary text-on-primary font-display font-bold",
+                          "shadow-lg shadow-primary/30",
+                          "hover:scale-105 transition-all",
+                        )}
+                      >
+                        <Play className="fill-current h-4 w-4" />
+                        Lihat Detail
+                      </Link>
+                    </FadeUpText>
                   </div>
                 </div>
               </div>
