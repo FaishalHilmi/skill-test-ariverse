@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/lib/utils";
+import { cn, formatRupiah } from "@/lib/utils";
 import { Game } from "@/types/game";
 import { Heart, Star } from "lucide-react";
 import Image from "next/image";
@@ -75,11 +75,7 @@ export default function HeroSection({ game }: { game: Game }) {
             <div className="flex items-center gap-3 md:gap-4 w-full md:w-auto">
               <button className="flex-1 md:flex-none px-3 py-3 md:px-8 md:py-4 rounded-xl md:rounded-2xl bg-primary text-on-primary font-display font-bold text-sm md:text-base hover:scale-105 transition-transform shadow-xl shadow-primary/20">
                 Beli Sekarang -{" "}
-                {game.price.toLocaleString("id-ID", {
-                  style: "currency",
-                  currency: "IDR",
-                  minimumFractionDigits: 0,
-                })}
+                {game.price == 0 ? "Gratis" : formatRupiah(game.price)}
               </button>
               <button
                 onClick={(e) => {
